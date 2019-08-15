@@ -90,6 +90,13 @@
             <scope>provided</scope>
         </dependency>
 
+<!--   Ctrl+Alt+Shift+？ => allow when app running     -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>

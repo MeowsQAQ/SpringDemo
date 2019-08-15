@@ -69,7 +69,8 @@
                     <h4 class="media-heading" th:text="${question.title}"></h4>
                     <span th:text="${question.descri}"></span>
                     <br>
-                    <span class="text-desc"><span th:text="${question.commentCount}"></span>个回复·<span th:text="${question.viewCount}"></span>次浏览·一小时前</span>
+<!--                    DATA FORMAT-->
+                    <span class="text-desc"><span th:text="${question.commentCount}"></span>个回复·<span th:text="${question.viewCount}"></span>次浏览·<span th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>
                 </div>
             </div>
         </div>

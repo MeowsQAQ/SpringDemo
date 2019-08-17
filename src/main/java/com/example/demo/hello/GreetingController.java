@@ -1,5 +1,6 @@
 package com.example.demo.hello;
 
+import com.example.demo.dto.PaginationDTO;
 import com.example.demo.dto.QuestionDTO;
 import com.example.demo.mapper.QuestionMapper;
 import com.example.demo.mapper.UserMapper;
@@ -28,7 +29,10 @@ public class GreetingController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request,
-                        Model model) {
+                        Model model,
+                        @RequestParam(name = "page",defaultValue = "1") Integer page,
+                        @RequestParam(name = "size",defaultValue = "5") Integer size
+    ) {
         Cookie[] cookies = request.getCookies();
         if(cookies != null &&cookies.length!=0) {
             for (Cookie cookie : cookies) {
@@ -41,8 +45,8 @@ public class GreetingController {
                 }
             }
         }
-        List<QuestionDTO> questionList = questionService.list();
-        model.addAttribute("questions",questionList);
+        PaginationDTO pagination = questionService.list(page,size);
+        model.addAttribute("pagination",pagination);
         return "index";
     }
 

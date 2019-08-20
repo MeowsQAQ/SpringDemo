@@ -42,10 +42,10 @@ public class ProfileController {
         if (user == null){
             return "redirect:/";
         }
-        if("questions".equals(action)){
+        if("question".equals(action)){
             model.addAttribute("section","question");
             model.addAttribute("sectionName","我的提问");
-        }else if("replies".equals(action)){
+        }else if("reply".equals(action)){
             model.addAttribute("section","reply");
             model.addAttribute("sectionName","最新回复");
         }

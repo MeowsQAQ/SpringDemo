@@ -22,8 +22,13 @@
 
             <div class="media" th:each="question:${pagination.questions}">
                 <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-circle" th:src="${question.user.avatarUrl}"  alt="...">
+                    <a href="#" th:if="${question.user}">
+                        <img class="media-object img-circle"
+                             th:src="${question.user.avatarUrl}"  alt="...">
+                    </a>
+                    <a href="#"  th:if="${question.user==null}" >
+                        <img class="media-object img-circle"
+                            src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3001793335,1513386932&fm=26&gp=0.jpg" alt="">
                     </a>
                 </div>
                 <div class="media-body">

@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li th:if="${pagination.showPrevious}">
-                        <a th:href="@{/profile/#{section}(page=${pagination.page - 1},section=${section})}" aria-label="Previous">
+                        <a th:href="@{/profile/{section}(page=${pagination.page - 1},section=${section})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>

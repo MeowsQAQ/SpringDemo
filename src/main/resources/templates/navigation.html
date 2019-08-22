@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/community.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js" type = "application/javascript"></script>
-
 </head>
 <body>
 
@@ -43,14 +41,13 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span  th:text="${session.user.getName()}"></span>
                                 <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile/question">我的问题</a></li>
-                                <li><a href="#">个人资料</a></li>
-                                <li><a href="#">退出登录</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/profile/question">我的问题</a></li>
+                                    <li><a href="#">个人资料</a></li>
+                                    <li><a href="/logout">退出登录</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
                         </li >
                         <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=90b1a8b5753a396293b4&redirect_url=http://localhost:8080/callback&scope=user&state=1">登陆</a></li>
 

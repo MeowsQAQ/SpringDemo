@@ -4,3 +4,8 @@
 
 ##GitHub API
 [GitHub OAuth API](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
+
+##MyBatis Generator
+```bash
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```

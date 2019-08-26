@@ -21,6 +21,8 @@ public class QuestionController {
                            HttpServletRequest request,
                            Model model){
         QuestionDTO questionDTO = questionService.getById(id);
+        //累加阅读数
+        questionService.incView(id);
         model.addAttribute("question",questionDTO);
         User sessionUser = (User) request.getSession().getAttribute("user");
         return "question";

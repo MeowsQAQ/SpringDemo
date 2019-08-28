@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type = "application/javascript"></script>
+    <script src="/js/community.js" type = "application/javascript"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -17,25 +18,71 @@
     <div class="row">
 
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-
-            <h4><span th:text="${question.title}"></span></h4>
-            <span class="text-desc">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4><span th:text="${question.title}"></span></h4>
+                <span class="text-desc">
                 <span th:if="${question.user}">
                     作者：<span th:text="${question.user.name}"></span> &nbsp;
                 </span>
                 阅读数：<span th:text="${question.viewCount}"></span>&nbsp;
                 发布时间：<span th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span>
             </span>
-            <hr>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.descri}"></div>
-            <hr  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <hr>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.descri}"></div>
+                <hr  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            <a th:href="@{'/publish/'+${question.id}}" class="community-menu" th:if="${session.user!=null && session.user.id==question.creator}">
+                <a th:href="@{'/publish/'+${question.id}}" class="community-menu" th:if="${session.user!=null && session.user.id==question.creator}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true" >编辑
                     </span>
-            </a>
+                </a>
+            </div>
+<!--            回复内容-->
+            <h4><span th:text="${question.commentCount}"></span>个回复</h4>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " th:each="comment:${comment}">
+                <div class="media row-blank ">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded"
+                                 th:src="${comment.user.name}"  alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <span th:text="${comment.user.name}"></span>
+                        </h5>
+                    </div>
+                    <div class="row-blank paragraph-blank " th:text="${comment.commentContent}"></div>
+                    <div class="menu">
+                        <span  class="glyphicon glyphicon-thumbs-up icon"></span>
+                        <span  class="glyphicon glyphicon-comment icon"></span>
+                        <span class="pull-right" th:text="${#dates.format(comment.gmtCreate,'dd MMMM yyyy')}"></span>
+                    </div>
+                </div>
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!--            回复框-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
+                <div class="media" th:if="${question.user}">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded"
+                                 th:src="${question.user.avatarUrl}"  alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <span th:text="${question.user.name}"></span>
+                        </h5>
+                    </div>
+                </div>
+                <input type="hidden" id="question_id" th:value="${question.id}">
+                <textarea name="" id="comment_content" cols="30" rows="6" class="form-control comment"></textarea>
+                <button type="button" class="btn btn-success btn-publish" onclick="post()">回复</button>
+            </div>
 
         </div>
+<!--        右边栏-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>发起人</h4>

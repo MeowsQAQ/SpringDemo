@@ -1,6 +1,6 @@
 package com.example.demo.hello;
 
-import com.example.demo.dto.CommentDTO;
+import com.example.demo.dto.CommentCreateDTO;
 import com.example.demo.dto.ResultDTO;
 import com.example.demo.exception.CustomizeErrorCode;
 import com.example.demo.model.Comment;
@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class CommentController {
@@ -20,7 +18,7 @@ public class CommentController {
     private CommentService commentService;
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                           HttpServletRequest request){
 
         User user = (User)request.getSession().getAttribute("user");
@@ -28,13 +26,12 @@ public class CommentController {
             return ResultDTO.errorOf(CustomizeErrorCode.NOT_LOGIN);
         }
         Comment comment = new Comment();
-        comment.setParentId(commentDTO.getParentId());
-        comment.setCommentContent(commentDTO.getCommentContent());
-        comment.setCommentTpye(commentDTO.getCommentType());
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setCommentContent(commentCreateDTO.getCommentContent());
+        comment.setCommentType(commentCreateDTO.getCommentType());
         comment.setGmtModified(System.currentTimeMillis());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setCommentator(user.getId());
-        comment.setCommentator(1L);
         comment.setLikeCount(0L);
         commentService.insert(comment);
         return ResultDTO.okof();

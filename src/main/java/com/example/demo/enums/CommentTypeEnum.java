@@ -2,7 +2,7 @@ package com.example.demo.enums;
 
 
 public enum CommentTypeEnum {
-    QUSTION(1),
+    QUESTION(1),
     COMMENT(2);
 
     private Integer type;

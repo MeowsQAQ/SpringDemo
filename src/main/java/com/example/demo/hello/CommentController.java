@@ -6,6 +6,7 @@ import com.example.demo.exception.CustomizeErrorCode;
 import com.example.demo.model.Comment;
 import com.example.demo.model.User;
 import com.example.demo.service.CommentService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,10 @@ public class CommentController {
         if (user ==null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NOT_LOGIN);
         }
+        if (commentCreateDTO==null || StringUtils.isBlank(commentCreateDTO.getCommentContent())){
+            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
+        }
+
         Comment comment = new Comment();
         comment.setParentId(commentCreateDTO.getParentId());
         comment.setCommentContent(commentCreateDTO.getCommentContent());

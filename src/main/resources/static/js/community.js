@@ -1,6 +1,11 @@
+//提交回复
 function post() {
     var questionId = $("#question_id").val();
     var content = $("#comment_content").val();
+    if (!content){
+        alert("内容不能为空");
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "/comment",
@@ -12,7 +17,7 @@ function post() {
         }),
         success:function(response){
             if (response.code==200){
-                $("#comment_section").hide();
+                window.location.reload();
             }else {
                 if (response.code==2003) {
                     var isAccepted = confirm(response.message);
@@ -28,4 +33,20 @@ function post() {
         },
         dataType:"json"
     });
+}
+//弹出二级回复
+function collapseComments(e) {
+    var id =e.getAttribute("data-id");
+    var comments=$("#comment-"+id);
+    var collapse = e.getAttribute("data-collapse")
+    if (collapse){
+        comments.removeClass("in")
+        e.removeAttribute("data-collapse")
+        e.classList.remove("active")
+    }else{
+        comments.addClass("in");
+        //标记二级评论状态
+        e.setAttribute("data-collapse","in");
+        e.classList.add("active")
+    }
 }

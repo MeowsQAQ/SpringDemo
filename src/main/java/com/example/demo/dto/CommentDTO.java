@@ -9,7 +9,7 @@ public class CommentDTO {
 
     private Long parentId;
 
-    private Integer commentTpye;
+    private Integer commentType;
 
     private Long commentator;
 
@@ -20,6 +20,8 @@ public class CommentDTO {
     private Long likeCount;
 
     private String commentContent;
+
+    private Long commentCount;
 
     private User user;
 }

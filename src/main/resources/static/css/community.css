@@ -48,10 +48,15 @@ body{
     margin-top: 5px;
 }
 
-.menu .icon {
-    margin-right: 6px;
+.menu .icon:hover{
+    color:#499ef3;
+}
+.menu .comment-icon{
     font-size: 15px;
     cursor: pointer;
+}
+.menu .comment-icon:hover{
+    color: #499ef3;
 }
 
 .menu .icon {

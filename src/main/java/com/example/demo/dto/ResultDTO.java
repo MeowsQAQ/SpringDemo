@@ -4,10 +4,13 @@ import com.example.demo.exception.CustomizeErrorCode;
 import com.example.demo.exception.CustomizeException;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class ResultDTO {
+public class ResultDTO<T>{
     private Integer code;
     private String message;
+    private T data;
     public static ResultDTO errorOf(Integer code,String message){
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(code);
@@ -25,6 +28,13 @@ public class ResultDTO {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(200);
         resultDTO.setMessage("success");
+        return resultDTO;
+    }
+    public static <T> ResultDTO okof(T t){
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setMessage("success");
+        resultDTO.setData(t);
         return resultDTO;
     }
 

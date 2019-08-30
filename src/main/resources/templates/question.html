@@ -49,11 +49,11 @@
                                      th:src="${comment.user.avatarUrl}" alt="...">
                             </a>
                         </div>
-                        <div class="media-body">
+                        <div class="media-body" >
                             <h5 class="media-heading">
                                 <span th:text="${comment.user.name}"></span>
                             </h5>
-                        </div>
+
                         <div class="row-blank paragraph-blank " th:text="${comment.commentContent}"></div>
                         <div class="menu">
                             <span class="glyphicon glyphicon-thumbs-up icon"></span>
@@ -87,9 +87,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" class="form-control" placeholder="评论一下...">
-                                <button type="button" class="btn btn-success btn-publish row-blank">评论</button>
+                                <input type="text" class="form-control" placeholder="评论一下..." th:id="${'sub-comment-'+comment.id}">
+                                <button type="button" class="btn btn-success btn-publish row-blank" th:data-id="${comment.id}" onclick="comment(this)" >评论</button>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

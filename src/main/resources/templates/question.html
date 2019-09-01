@@ -120,6 +120,7 @@
         </div>
         <!--        右边栏-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <!--发起人-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>发起人</h4>
                 <div class="media" th:if="${question.user}">
@@ -136,10 +137,15 @@
                     </div>
                 </div>
             </div>
+            <br><br>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 question-resumeImg">
+                <img src="/image/back.png" style="width: 100%" class="img-thumbnail">
+            </div>
+            <!--相关问题-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>相关问题</h4>
-                <ul>
-                    <li th:each="related:${relateQuestions}">
+                <ul class="question-related">
+                    <li th:each="related:${relateQuestions}" style="list-style:none;">
                         <a th:href="@{'/question/'+${related.id}}" th:text="${related.title}"></a>
                     </li>
                 </ul>

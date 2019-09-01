@@ -105,3 +105,19 @@ function comment(e) {
     var content =$("#sub-comment-"+commentId).val();
     comment2target(commentId,2,content)
 }
+//标签选择
+function selectTag(e) {
+    var value = e.getAttribute("data-tag")
+   var previous =  $("#tag").val();
+   if (previous.indexOf(value!==-1)) {
+       if (previous) {
+           $("#tag").val(previous + ',' + value)
+       } else {
+           $("#tag").val(value)
+       }
+   }
+}
+//展示标签
+function showSelectTag() {
+ $("#selectTag").show();
+}

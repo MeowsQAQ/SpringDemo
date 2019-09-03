@@ -6,10 +6,14 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/community.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/editormd.preview.min.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/community.js" type="application/javascript"></script>
     <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
+    <script src="/js/lib/marked.min.js" type="application/javascript"></script>
+    <script src="/js/lib/prettify.min.js" type="application/javascript"></script>
 
     <meta charset="UTF-8">
     <title>Title</title>
@@ -30,7 +34,16 @@
                 发布时间：<span th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span>
             </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.descri}"></div>
+                <div id="question--md-view" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                    <textarea style="display:none;" th:text="${question.descri}"></textarea>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+                        var testView = editormd.markdownToHTML("question--md-view", {});
+                    });
+                </script>
+
+
                 <!--标签和编辑键-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -97,16 +110,16 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>提交回复</h4>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
-                    <div class="media" th:if="${question.user}">
+                    <div class="media" th:if="${session.user}">
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object img-rounded"
-                                     th:src="${question.user.avatarUrl}" alt="...">
+                                     th:src="${session.user.avatarUrl}" alt="...">
                             </a>
                         </div>
                         <div class="media-body">
                             <h5 class="media-heading">
-                                <span th:text="${question.user.name}"></span>
+                                <span th:text="${session.user.name}"></span>
                             </h5>
                         </div>
                     </div>

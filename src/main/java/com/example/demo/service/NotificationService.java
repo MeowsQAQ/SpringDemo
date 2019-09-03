@@ -32,6 +32,7 @@ public class NotificationService {
         NotificationExample notificationExample = new NotificationExample();
         notificationExample.createCriteria()
                 .andReceiverEqualTo(userId);
+        notificationExample.setOrderByClause("gmt_create desc");
         Integer totalCount = (int) notificationMapper.countByExample(notificationExample);
         PaginationDTO<NotificationDTO> paginationDTO = new PaginationDTO<>();
         paginationDTO.setPagination(totalCount, page, size);
@@ -62,7 +63,9 @@ public class NotificationService {
     public Long unreadCount(Long userId) {
         NotificationExample notificationExample = new NotificationExample();
         notificationExample.createCriteria()
-                .andReceiverEqualTo(userId);
+                .andReceiverEqualTo(userId)
+                .andStatusEqualTo(0);
+
          return notificationMapper.countByExample(notificationExample);
     }
 

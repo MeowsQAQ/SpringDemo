@@ -98,7 +98,7 @@
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="list-group section">
                 <a href="/profile/question" class="list-group-item" th:classappend="${section=='question'}?'active ':''">我的问题</a>
-                <a href="/profile/reply"   class="list-group-item" th:classappend="${section=='reply'}?'active':''">最新回复 <span class="badge" th:text="${unreadCount}"></span></a>
+                <a href="/profile/reply"   class="list-group-item" th:classappend="${section=='reply'}?'active':''">最新回复 <span class="badge" th:text="${session.unreadMessage}"></span></a>
                 <a href="#" class="list-group-item">Morbi leo risus</a>
                 <a href="#" class="list-group-item">Porta ac consectetur ac</a>
                 <a href="#" class="list-group-item">Vestibulum at eros</a>

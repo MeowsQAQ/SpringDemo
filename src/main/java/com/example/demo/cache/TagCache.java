@@ -14,12 +14,12 @@ public class TagCache {
         ArrayList<TagDTO> tagTOS = new ArrayList<>();
         TagDTO programLang = new TagDTO();
         programLang.setCategoryName("开发语言");
-        programLang.setTags(Arrays.asList("js","php","css","html","java","node","ruby","python","c#","golang","rust"));
+        programLang.setTags(Arrays.asList("js","php","css","html","Java","node","ruby","python","c#","golang","rust","markdown"));
         tagTOS.add(programLang);
 
         TagDTO framework = new TagDTO();
         framework.setCategoryName("平台框架");
-        framework.setTags(Arrays.asList("Spring","django","SpringBoot","express","ruby-on-rails","koa","flask"));
+        framework.setTags(Arrays.asList("Spring","django","SpringBoot","express","ruby-on-rails","koa","flask","SpringMVC"));
         tagTOS.add(framework);
 
         TagDTO server = new TagDTO();

@@ -54,3 +54,8 @@ mvn clean compile package
  
  ps -aux | grep java
 ```
+###运行
+```bash
+java -jar -Dspring.profiles.active=production SpringApp/SpringDemo/target/demo-0.0.1-SNAPSHOT.jar
+
+```

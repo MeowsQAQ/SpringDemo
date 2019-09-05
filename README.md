@@ -21,6 +21,36 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 -  MySQL
 
 ## 步骤
+### 更新
 ```bash
 yum update
+```
+###安装Git
+```bash
+yum install git
+```
+### 下载代码
+```bash
+mkdir SpringApp
+cd SpringApp/
+git clone https://github.com/MeowsQAQ/SpringDemo.git
+cd SpringDemo
+```
+###安装JAVA和maven
+```bash
+yum install maven #会自动安装JAVA
+mvn -v 查看版本号
+```
+###打包
+```bash
+mvn clean compile package
+```
+###查看修改配置
+```bash
+ more src/main/resources/application.properties
+ cp src/main/resources/application.properties src/main/resources/application-production.properties
+ vim src/main/resources/application-production.properties
+ mvn package  #将新配置导入
+ 
+ ps -aux | grep java
 ```

@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.PaginationDTO;
 import com.example.demo.dto.QuestionDTO;
+import com.example.demo.dto.QuestionQueryDTO;
 import com.example.demo.exception.CustomizeErrorCode;
 import com.example.demo.exception.CustomizeException;
 import com.example.demo.mapper.ExtQuestionMapper;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +31,16 @@ public class QuestionService {
     @Autowired
     private ExtQuestionMapper extQuestionMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search ,Integer page, Integer size) {
+        if(StringUtils.isNotBlank(search)){
+            String[] tags = StringUtils.split(search," ");
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
 
-        Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
+
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = extQuestionMapper.countBySearch(questionQueryDTO);
         PaginationDTO paginationDTO = new PaginationDTO();
         paginationDTO.setPagination(totalCount,page,size);
 
@@ -40,7 +49,9 @@ public class QuestionService {
         Integer offset = size*(page-1);
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample,new RowBounds(offset,size));
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        List<Question> questions = extQuestionMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {

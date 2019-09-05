@@ -10,3 +10,17 @@
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
 ##[Markdown编辑](https://github.com/pandao/editor.md/)
+
+
+#部署
+
+## 依赖
+- Git
+- JDK
+- Maven
+-  MySQL
+
+## 步骤
+```bash
+yum update
+```
